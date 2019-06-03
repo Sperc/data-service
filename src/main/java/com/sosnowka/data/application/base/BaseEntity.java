@@ -4,18 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-@MappedSuperclass
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String uuid = UUID.randomUUID().toString();
     private LocalDateTime createDate = LocalDateTime.now();

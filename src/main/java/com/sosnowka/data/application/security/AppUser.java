@@ -1,14 +1,13 @@
-package com.sosnowka.data.application.user;
+package com.sosnowka.data.application.security;
 
 import com.sosnowka.data.application.base.BaseEntity;
+import lombok.Data;
 
 import javax.persistence.Entity;
 
 @Entity
+@Data
 class AppUser extends BaseEntity {
-    private String email;
+    private String login;
     private String password;
-    private String phoneNumber;
-    private String name;
-    private String surname;
 }
