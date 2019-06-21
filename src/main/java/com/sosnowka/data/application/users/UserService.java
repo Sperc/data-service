@@ -42,4 +42,9 @@ class UserService {
     private boolean isPasswordMatches(String requestPassword, String password) {
         return passwordEncoder.matches(requestPassword, password);
     }
+
+    AppUser getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                             .orElseThrow(() -> new DataException(ApiErrorCode.CANT_FIND_USER, "Cant'find user", HttpStatus.BAD_REQUEST));
+    }
 }

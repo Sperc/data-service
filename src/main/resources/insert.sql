@@ -1,0 +1,1 @@
+-- insert into data_service.public.app_user(last_name,first_name,age,email,login,password) VALUES

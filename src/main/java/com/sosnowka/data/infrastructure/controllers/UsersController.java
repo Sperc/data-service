@@ -8,9 +8,7 @@ import com.sosnowka.data.application.users.dto.GetTokenRequest;
 import com.sosnowka.data.application.users.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -28,8 +26,14 @@ public class UsersController {
         return usersFacade.addUser(addUserRequest);
     }
 
+    @GetMapping("/{email}")
+    public UserResponse getUser(@PathVariable("email") String email) {
+        log.info("Get user by email: {} request", email);
+        return usersFacade.getUserByUuid(email);
+    }
+
     @PostMapping("/token")
-    public TokenResponse getToken(GetTokenRequest request) {
+    public TokenResponse getToken(@RequestBody GetTokenRequest request) {
         log.info("Get token request: {}", request);
         return sessionUtil.generateToken(request);
     }

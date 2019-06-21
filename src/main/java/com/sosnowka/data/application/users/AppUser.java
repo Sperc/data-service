@@ -1,6 +1,7 @@
 package com.sosnowka.data.application.users;
 
 import com.sosnowka.data.application.base.BaseEntity;
+import com.sosnowka.data.infrastructure.controllers.UserResponse;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -26,5 +27,14 @@ class AppUser extends BaseEntity {
                           .userName(UserContext.UserName.of(this.firstName, this.lastName))
                           .build();
 
+    }
+
+    UserResponse toUserResponse() {
+        return new UserResponse(
+                this.getUuid(),
+                this.firstName,
+                this.lastName,
+                this.email,
+                this.age);
     }
 }
