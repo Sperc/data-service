@@ -1,6 +1,10 @@
 server:
   port: 9091
 spring:
+  rabbitmq:
+    password: "ngp9247X^9QJ462+2Y3E"
+    username: "rabbitmq"
+    host: localhost
   datasource:
     url: jdbc:postgresql://localhost:5432/data_service?useSSL=false
     username: postgres
@@ -15,6 +19,18 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  cloud:
+    stream:
+      bindings:
+        add-user:
+          destination: send-email-exchange
+          group: notification-group
+          contentType: application/json
+#        add-user-handler:
+#          destination: send-email-exchange
+#          group: notification-group
+#          contentType: application/json
+
 eureka:
   client:
     fetch-registry: true
